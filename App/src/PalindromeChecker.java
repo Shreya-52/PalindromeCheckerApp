@@ -1,66 +1,62 @@
 /**
  * =========================================================
- * MAIN CLASS — UseCase11PalindromeCheckerApp
+ * MAIN CLASS — UseCase12PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 11: Object-Oriented Palindrome Service
+ * Use Case 12: Utility-Based Palindrome Checker
  *
  * Description:
- * This class demonstrates palindrome validation using
- * object-oriented design.
+ * This implementation demonstrates palindrome validation
+ * using a separate utility class with a static helper method.
  *
- * The palindrome logic is encapsulated inside a
- * PalindromeService class.
- *
- * This improves:
- * - Reusability
- * - Maintainability
- * - Separation of concerns
+ * This approach improves:
+ * - Code reusability
+ * - Clean structure
+ * - Centralized utility logic
  *
  * Author: Shreya
- * Version: 11.0
+ * Version: 12.0
  */
 
 public class PalindromeChecker {
 
     /**
-     * Application entry point for UC11.
+     * Application entry point for UC12.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        String input = "racecar";
+        String input = "level";
 
         System.out.println("Input : " + input);
 
-        // Create service object
-        PalindromeService service = new PalindromeService();
-
-        boolean result = service.checkPalindrome(input);
+        boolean result = PalindromeUtil.isPalindrome(input);
 
         System.out.println("Is Palindrome? : " + result);
     }
 }
 
 /**
- * Service class that contains palindrome logic.
+ * Utility class containing static palindrome logic.
  */
-class PalindromeService {
+class PalindromeUtil {
 
     /**
-     * Checks whether the input string is a palindrome.
+     * Checks whether a given string is a palindrome.
      *
      * @param input Input string
      * @return true if palindrome, false otherwise
      */
-    public boolean checkPalindrome(String input) {
+    public static boolean isPalindrome(String input) {
 
-        // Initialize pointers
+        if (input == null || input.length() <= 1) {
+            return true;
+        }
+
         int start = 0;
         int end = input.length() - 1;
 
-        // Compare characters moving inward
         while (start < end) {
 
             if (input.charAt(start) != input.charAt(end)) {
