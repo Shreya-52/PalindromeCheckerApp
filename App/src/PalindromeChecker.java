@@ -1,45 +1,66 @@
 /**
- * ============================================================
- * MAIN CLASS - UseCase1PalindromeCheckerApp
- * ============================================================
+ * =========================================================
+ * MAIN CLASS — UseCase9Palindrome
+ * =========================================================
  *
- * Use Case 1: Application Entry & Welcome Message
+ * Use Case 9: Recursive Palindrome Checker
  *
  * Description:
- * This class represents the entry point of the
- * Palindrome Checker Management System.
+ * This class validates a palindrome using recursion.
  *
- * At this stage, the application:
- *  - Starts execution from the main() method
- *  - Displays a welcome message
- *  - Shows application version
+ * Characters are compared from the outer positions
+ * moving inward using recursive calls.
  *
- * No palindrome logic is implemented yet.
- * The goal is to establish a clear startup flow.
+ * The recursion stops when:
+ * - All characters are matched, or
+ * - A mismatch is found.
  *
- * @author Shreya
- * @version 1.0
+ * This use case demonstrates divide-and-conquer
+ * logic using method recursion.
+ *
+ * Author: Shreya
+ * Version: 9.0
  */
 
 public class PalindromeChecker {
 
     /**
-     * Application entry point.
-     * This is the first method executed by the JVM
-     * when the program starts.
+     * Application entry point for UC9.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Display welcome banner
-        // Welcome message
-        System.out.println("Welcome to the Palindrome Checker System!");
+        String input = "madam";  // Sample input
 
-        // Version information
-        System.out.println("Version : 1.0");
+        System.out.println("Input : " + input);
 
-        // Startup completed
-        System.out.println("System initialized successfully.");
+        boolean result = check(input, 0, input.length() - 1);
+
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    /**
+     * Recursively checks whether a string is palindrome.
+     *
+     * @param s     Input string
+     * @param start Starting index
+     * @param end   Ending index
+     * @return true if palindrome, otherwise false
+     */
+    private static boolean check(String s, int start, int end) {
+
+        // Base case: If pointers cross or meet
+        if (start >= end) {
+            return true;
+        }
+
+        // If characters don't match
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
+        }
+
+        // Recursive call moving inward
+        return check(s, start + 1, end - 1);
     }
 }
